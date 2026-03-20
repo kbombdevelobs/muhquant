@@ -14,6 +14,7 @@ export interface ArticleMeta {
   excerpt: string;
   tags: string[];
   author?: string;
+  location?: [number, number]; // [lng, lat]
 }
 
 export interface Article extends ArticleMeta {
@@ -39,6 +40,7 @@ export function getAllArticles(): ArticleMeta[] {
         excerpt: data.excerpt || "",
         tags: data.tags || [],
         author: data.author,
+        location: data.location || undefined,
       };
     });
 

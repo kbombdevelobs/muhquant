@@ -17,41 +17,44 @@ export default async function ArticlePage({
   if (!article) notFound();
 
   return (
-    <article className="max-w-3xl mx-auto">
-      {/* Back link */}
+    <div className="max-w-2xl mx-auto px-6 py-8">
       <Link
         href="/articles"
-        className="inline-flex items-center gap-1 font-mono text-[10px] text-terminal-muted hover:text-terminal-accent uppercase tracking-widest mb-8 transition-colors"
+        className="font-mono text-[12px] text-muted hover:text-accent transition-colors uppercase tracking-wider inline-flex items-center gap-1 mb-8"
       >
-        ← Back to Research
+        &larr; Back to Research
       </Link>
 
-      {/* Article header */}
-      <header className="mb-8 pb-6 border-b border-terminal-border">
-        <div className="flex items-center gap-2 mb-3">
-          <span className="font-mono text-[10px] text-terminal-muted">{article.date}</span>
-          {article.tags.map((tag) => (
-            <span
-              key={tag}
-              className="font-mono text-[9px] px-1.5 py-0.5 bg-terminal-bg text-terminal-accent rounded"
-            >
-              {tag}
-            </span>
-          ))}
-        </div>
-        <h1 className="font-mono text-xl md:text-2xl font-bold text-terminal-accent glow-accent mb-2">
-          {article.title}
-        </h1>
-        {article.author && (
-          <p className="font-mono text-xs text-terminal-muted">By {article.author}</p>
-        )}
-      </header>
+      <article>
+        {/* Header */}
+        <header className="mb-8 pb-6 border-b border-border">
+          <div className="flex items-center gap-3 mb-3">
+            <span className="font-mono text-[12px] text-muted">{article.date}</span>
+            {article.tags.map((tag) => (
+              <span key={tag} className="font-mono text-[10px] text-accent-dim uppercase tracking-widest border border-border px-2 py-0.5">
+                {tag}
+              </span>
+            ))}
+          </div>
+          <h1
+            className="font-mono text-[22px] text-accent leading-tight mb-2"
+            style={{ textShadow: "0 0 12px rgba(255,140,0,0.2)" }}
+          >
+            {article.title}
+          </h1>
+          {article.author && (
+            <p className="text-[13px] text-muted" style={{ fontFamily: "var(--font-body)" }}>
+              {article.author}
+            </p>
+          )}
+        </header>
 
-      {/* Article content */}
-      <div
-        className="prose-terminal"
-        dangerouslySetInnerHTML={{ __html: article.contentHtml }}
-      />
-    </article>
+        {/* Body */}
+        <div
+          className="prose"
+          dangerouslySetInnerHTML={{ __html: article.contentHtml }}
+        />
+      </article>
+    </div>
   );
 }

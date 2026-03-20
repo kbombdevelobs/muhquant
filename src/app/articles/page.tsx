@@ -1,38 +1,50 @@
 import { getAllArticles } from "@/lib/articles";
-import ArticleCard from "@/components/ArticleCard";
+import Link from "next/link";
 
 export default function ArticlesPage() {
   const articles = getAllArticles();
 
   return (
-    <div>
-      <div className="flex items-center gap-2 mb-6">
-        <div className="w-1.5 h-1.5 rounded-full bg-terminal-accent" />
-        <h1 className="font-mono text-xs uppercase tracking-widest text-terminal-muted">
-          Research Archive
-        </h1>
-        <span className="font-mono text-[10px] text-terminal-muted ml-auto">
-          {articles.length} articles
-        </span>
+    <div className="max-w-3xl mx-auto px-6 py-8">
+      <div className="flex items-baseline justify-between mb-8">
+        <h1 className="font-mono text-[18px] uppercase tracking-widest text-accent">Research</h1>
+        <span className="font-mono text-[13px] text-muted">{articles.length} articles</span>
       </div>
 
-      {articles.length > 0 ? (
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          {articles.map((article) => (
-            <ArticleCard key={article.slug} {...article} />
-          ))}
-        </div>
-      ) : (
-        <div className="border border-terminal-border border-dashed rounded p-12 text-center">
-          <p className="font-mono text-sm text-terminal-muted mb-2">
-            No research published yet.
-          </p>
-          <p className="font-mono text-xs text-terminal-muted">
-            Drop <code className="text-terminal-green">.md</code> files into{" "}
-            <code className="text-terminal-green">content/articles/</code> to get started.
-          </p>
-        </div>
-      )}
+      <div className="space-y-4">
+        {articles.length > 0 ? (
+          articles.map((a) => (
+            <Link key={a.slug} href={`/articles/${a.slug}`} className="block group">
+              <article className="border border-border bg-surface p-6 transition-all hover:border-accent-dim hover:bg-[#0f1420]">
+                <div className="flex items-start justify-between gap-6">
+                  <div className="flex-1 min-w-0">
+                    <h2 className="font-mono text-[16px] text-text group-hover:text-accent transition-colors mb-2">
+                      {a.title}
+                    </h2>
+                    {a.excerpt && (
+                      <p className="text-[14px] text-muted leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
+                        {a.excerpt}
+                      </p>
+                    )}
+                    {a.tags.length > 0 && (
+                      <div className="flex gap-3 mt-3">
+                        {a.tags.map((tag) => (
+                          <span key={tag} className="font-mono text-[10px] text-accent-dim uppercase tracking-widest border border-border px-2 py-0.5">
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                  <span className="font-mono text-[12px] text-muted shrink-0 mt-1">{a.date}</span>
+                </div>
+              </article>
+            </Link>
+          ))
+        ) : (
+          <p className="text-[14px] text-muted">No articles yet.</p>
+        )}
+      </div>
     </div>
   );
 }

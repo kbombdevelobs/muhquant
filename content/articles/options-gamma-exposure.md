@@ -4,6 +4,7 @@ date: "2026-03-15"
 excerpt: "How market maker hedging flows create predictable intraday patterns, and why GEX matters for short-term traders."
 tags: ["OPTIONS", "FLOW"]
 author: "MuhQuant Research"
+location: [139.7, 35.7]
 ---
 
 ## What is GEX?

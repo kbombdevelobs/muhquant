@@ -4,6 +4,7 @@ date: "2026-03-10"
 excerpt: "A practical guide to constructing a factor model using momentum, value, quality, and low-volatility factors with Python."
 tags: ["QUANT", "FACTORS"]
 author: "MuhQuant Research"
+location: [-74.0, 40.7]
 ---
 
 ## Introduction
