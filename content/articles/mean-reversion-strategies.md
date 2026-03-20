@@ -4,6 +4,7 @@ date: "2026-03-18"
 excerpt: "Analyzing the effectiveness of statistical mean reversion models when VIX exceeds 25, and how regime detection can improve entry timing."
 tags: ["STRATEGY", "VOL"]
 author: "MuhQuant Research"
+location: [-0.1, 51.5]
 ---
 
 ## Overview
